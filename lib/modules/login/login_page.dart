@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_images.dart';
@@ -17,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Container(
+      body: SizedBox(
         width: size.width,
         height: size.height,
         child: Stack(
@@ -31,10 +32,35 @@ class _LoginPageState extends State<LoginPage> {
               top: 40,
               left: 0,
               right: 0,
-              child: Image.asset(
-                AppImages.person,
-                width: 208,
-                height: 373,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 1),
+                    child: Image.asset(
+                      AppImages.person,
+                      width: 208,
+                      height: 373,
+                    ),
+                  ),
+                  Container(
+                    height: 105,
+                    width: 206,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        stops: const [.0, .5, .65, 1],
+                        colors: [
+                          Colors.white.withOpacity(1),
+                          Colors.white.withOpacity(.8),
+                          Colors.white.withOpacity(.65),
+                          Colors.white.withOpacity(0),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             Positioned(
