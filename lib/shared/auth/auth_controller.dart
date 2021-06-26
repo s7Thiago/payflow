@@ -41,8 +41,11 @@ class AuthController {
     return;
   }
 
-  Future<bool> clearUser() async {
+  Future<void> clearUser(BuildContext context) async {
     final instance = await SharedPreferences.getInstance();
-    return instance.remove('user');
+    instance.remove('user');
+    setUser(context, null);
+
+    return Future.value();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payflow/modules/home/home_controller.dart';
+import 'package:payflow/shared/auth/auth_controller.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 
@@ -12,6 +13,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = HomeController();
+  final authController = AuthController();
+
   final pages = [
     Container(color: Colors.red),
     Container(color: Colors.blue),
@@ -43,12 +46,18 @@ class _HomePageState extends State<HomePage> {
                 'Mantenha suas contas em dia',
                 style: TextStyles.captionShape,
               ),
-              trailing: Container(
-                height: 48,
-                width: 48,
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(5)),
+              trailing: Material(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(5),
+                child: InkWell(
+                  onTap: () => authController.clearUser(context),
+                  child: Container(
+                    height: 48,
+                    width: 48,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                  ),
+                ),
               ),
             ),
           ),
