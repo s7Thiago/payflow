@@ -40,4 +40,9 @@ class AuthController {
     }
     return;
   }
+
+  Future<bool> clearUser() async {
+    final instance = await SharedPreferences.getInstance();
+    return instance.remove('user');
+  }
 }
