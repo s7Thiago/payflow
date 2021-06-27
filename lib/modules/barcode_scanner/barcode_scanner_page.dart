@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:payflow/modules/barcode_scanner/barcode_scanner_controller.dart';
 import 'package:payflow/modules/barcode_scanner/barcode_scanner_status.dart';
+import 'package:payflow/shared/routes.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 import 'package:payflow/shared/widgets/botton_sheet/bottom_sheet_widget.dart';
@@ -19,6 +20,14 @@ class _BarCodeScannerPageState extends State<BarCodeScannerPage> {
   @override
   void initState() {
     controller.getAvailableCameras();
+    controller.statusNotifier.addListener(() {
+      if (controller.status.hasBarcode) {
+        Navigator.pushReplacementNamed(
+          context,
+          AppRoutes.BARCODE_INSERT_BOLETO,
+        );
+      }
+    });
     super.initState();
   }
 
@@ -43,7 +52,7 @@ class _BarCodeScannerPageState extends State<BarCodeScannerPage> {
             builder: (_, status, __) {
               if (status.showCamera) {
                 return Container(
-                  child: status.cameraController!.buildPreview(),
+                  child: controller.cameraController!.buildPreview(),
                 );
               } else {
                 return Container();

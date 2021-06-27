@@ -1,32 +1,44 @@
 import 'package:camera/camera.dart';
 
 class BarCodeScannerStatus {
-  final bool isCameraAvailable;
+  final bool isAvailable;
   final String error;
   final String barcode;
+  final bool stopScanner;
 
-  CameraController? cameraController;
+  BarCodeScannerStatus(
+      {this.isAvailable = false,
+      this.error = "",
+      this.stopScanner = false,
+      this.barcode = ""});
 
-  BarCodeScannerStatus({
-    this.isCameraAvailable = false,
-    this.cameraController,
-    this.error = '',
-    this.barcode = '',
-  });
-
-  factory BarCodeScannerStatus.available(CameraController controller) =>
-      BarCodeScannerStatus(
-        isCameraAvailable: true,
-        cameraController: controller,
-      );
+  factory BarCodeScannerStatus.available() =>
+      BarCodeScannerStatus(isAvailable: true, stopScanner: false);
 
   factory BarCodeScannerStatus.error(String message) =>
-      BarCodeScannerStatus(error: message);
+      BarCodeScannerStatus(error: message, stopScanner: true);
 
   factory BarCodeScannerStatus.barcode(String barcode) =>
-      BarCodeScannerStatus(barcode: barcode);
+      BarCodeScannerStatus(barcode: barcode, stopScanner: true);
 
-  bool get showCamera => isCameraAvailable && error.isEmpty;
+  bool get showCamera => isAvailable && error.isEmpty;
+
   bool get hasError => error.isNotEmpty;
-  bool get hasBarCode => barcode.isNotEmpty;
+
+  bool get hasBarcode => barcode.isNotEmpty;
+
+  BarCodeScannerStatus copyWith({
+    bool? isAvailable,
+    String? error,
+    String? barcode,
+    bool? stopScanner,
+    CameraController? cameraController,
+  }) {
+    return BarCodeScannerStatus(
+      isAvailable: isAvailable ?? this.isAvailable,
+      error: error ?? this.error,
+      barcode: barcode ?? this.barcode,
+      stopScanner: stopScanner ?? this.stopScanner,
+    );
+  }
 }
