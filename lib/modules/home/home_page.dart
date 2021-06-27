@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:payflow/modules/home/home_controller.dart';
 import 'package:payflow/shared/auth/auth_controller.dart';
+import 'package:payflow/shared/routes.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 
@@ -79,19 +80,20 @@ class _HomePageState extends State<HomePage> {
                 color: AppColors.primary,
               ),
             ),
-            InkWell(
-              onTap: () {
-                print('button on home');
-              },
-              child: Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(5)),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
+            Material(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.circular(5),
+              child: InkWell(
+                onTap: () {
+                  print('Testando open bar code screen');
+                  Navigator.pushNamed(context, AppRoutes.BARCODE_SCANNER);
+                },
+                child: Container(
+                  width: 56,
+                  height: 56,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                  child: const Icon(
                     Icons.add_box_outlined,
                     color: AppColors.background,
                   ),
