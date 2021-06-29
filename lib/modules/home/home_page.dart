@@ -85,8 +85,8 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(5),
               child: InkWell(
                 onTap: () {
-                  print('Testando open bar code screen');
-                  Navigator.pushNamed(context, AppRoutes.BARCODE_SCANNER);
+                  // Navigator.pushNamed(context, AppRoutes.BARCODE_SCANNER);
+                  Navigator.pushNamed(context, AppRoutes.BARCODE_INSERT_BOLETO);
                 },
                 child: Container(
                   width: 56,
