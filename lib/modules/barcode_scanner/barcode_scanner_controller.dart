@@ -77,7 +77,7 @@ class BarCodeScannerController {
 
   // 'ouve' a imagem que está sendo recebida da câmera
   void listenCamera() {
-    if (cameraController!.value.isStreamingImages == false)
+    if (cameraController!.value.isStreamingImages == false) {
       cameraController!.startImageStream((cameraImage) async {
         if (status.stopScanner == false) {
           try {
@@ -88,7 +88,7 @@ class BarCodeScannerController {
             final bytes = allBytes.done().buffer.asUint8List();
             final Size imageSize = Size(
                 cameraImage.width.toDouble(), cameraImage.height.toDouble());
-            final InputImageRotation imageRotation =
+            const InputImageRotation imageRotation =
                 InputImageRotation.Rotation_0deg;
             final InputImageFormat inputImageFormat =
                 InputImageFormatMethods.fromRawValue(cameraImage.format.raw) ??
@@ -117,6 +117,7 @@ class BarCodeScannerController {
           }
         }
       });
+    }
   }
 
   // Fecha todos os recursos abertos
