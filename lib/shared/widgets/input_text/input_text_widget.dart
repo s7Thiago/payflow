@@ -41,7 +41,7 @@ class InputTextWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 19.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 19.0),
                     child: Icon(
                       icon,
                       color: AppColors.primary,
