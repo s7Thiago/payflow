@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:payflow/modules/extratos/extratos_page.dart';
 import 'package:payflow/modules/home/home_controller.dart';
 import 'package:payflow/modules/meus_boletos/meus_boletos_page.dart';
 import 'package:payflow/shared/auth/auth_controller.dart';
-import 'package:payflow/shared/models/boleto_model.dart';
 import 'package:payflow/shared/routes.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
-import 'package:payflow/shared/widgets/boleto_list/boleto_list.dart';
-import 'package:payflow/shared/widgets/boleto_tile/boleto_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,7 +20,7 @@ class _HomePageState extends State<HomePage> {
 
   final pages = [
     const MeusBoletosPage(),
-    Container(color: Colors.blue),
+    const ExtratosPage(),
   ];
 
   @override
