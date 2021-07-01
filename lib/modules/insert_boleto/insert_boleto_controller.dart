@@ -35,7 +35,7 @@ class InsertBoletoController {
     final instance = await SharedPreferences.getInstance();
     final boletos = instance.getStringList('boletos') ?? <String>[];
     boletos.add(model.toJson());
-    await instance.setStringList('boeltos', boletos);
+    await instance.setStringList('boletos', boletos);
     return;
   }
 
@@ -43,7 +43,7 @@ class InsertBoletoController {
     final form = formKey.currentState;
 
     if (form!.validate()) {
-      return saveBoleto();
+      return await saveBoleto();
     }
   }
 }
