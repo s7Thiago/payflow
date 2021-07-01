@@ -42,48 +42,67 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
         elevation: 0,
         leading: const BackButton(color: AppColors.input),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 93, vertical: 24),
-              child: Text(
-                'Preencha os dados do boleto',
-                textAlign: TextAlign.center,
-                style: TextStyles.titleBoldHeading,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 93, vertical: 24),
+                child: Text(
+                  'Preencha os dados do boleto',
+                  textAlign: TextAlign.center,
+                  style: TextStyles.titleBoldHeading,
+                ),
               ),
-            ),
-            const SizedBox(height: 24),
-            InputTextWidget(
-              label: 'Nome do boleto',
-              icon: Icons.description_outlined,
-              onChanged: (value) {},
-              validator: controller.validateName,
-            ),
-            InputTextWidget(
-              controller: dueDateInputTextController,
-              label: 'Vencimento',
-              icon: FontAwesomeIcons.timesCircle,
-              onChanged: (value) {},
-              validator: controller.validateVencimento,
-            ),
-            InputTextWidget(
-              controller: moneyInputTextController,
-              label: 'Valor',
-              icon: FontAwesomeIcons.wallet,
-              onChanged: (value) {},
-              validator: (_) => controller.validateValor(moneyInputTextController.numberValue.toDouble()),
-            ),
-            InputTextWidget(
-              controller: barcodeInputTextController,
-              label: 'Código',
-              icon: FontAwesomeIcons.barcode,
-              onChanged: (value) {},
-              validator: controller.validateCodigo,
-            ),
-          ],
+              const SizedBox(height: 24),
+              Form(
+                  key: controller.formKey,
+                  child: Column(
+                    children: [
+                      InputTextWidget(
+                        label: 'Nome do boleto',
+                        icon: Icons.description_outlined,
+                        validator: controller.validateName,
+                        onChanged: (value) {
+                          controller.onChange(name: value);
+                        },
+                      ),
+                      InputTextWidget(
+                        controller: dueDateInputTextController,
+                        label: 'Vencimento',
+                        icon: FontAwesomeIcons.timesCircle,
+                        validator: controller.validateVencimento,
+                        onChanged: (value) {
+                          controller.onChange(dueDate: value);
+                        },
+                      ),
+                      InputTextWidget(
+                        controller: moneyInputTextController,
+                        label: 'Valor',
+                        icon: FontAwesomeIcons.wallet,
+                        validator: (_) => controller.validateValor(
+                            moneyInputTextController.numberValue),
+                        onChanged: (value) {
+                          controller.onChange(
+                              value: moneyInputTextController.numberValue);
+                        },
+                      ),
+                      InputTextWidget(
+                        controller: barcodeInputTextController,
+                        label: 'Código',
+                        icon: FontAwesomeIcons.barcode,
+                        validator: controller.validateCodigo,
+                        onChanged: (value) {
+                          controller.onChange(barcode: value);
+                        },
+                      ),
+                    ],
+                  ))
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: SetLabelButtons(
@@ -91,7 +110,9 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
         primaryLabel: 'Cancelar',
         primaryOnPressed: () => Navigator.pop(context),
         secondaryLabel: 'Cadastrar',
-        secondaryOnPressed: () {},
+        secondaryOnPressed: () {
+          controller.cadastrarBoleto();
+        },
       ),
     );
   }
