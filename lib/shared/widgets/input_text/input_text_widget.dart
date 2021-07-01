@@ -29,8 +29,10 @@ class InputTextWidget extends StatelessWidget {
         children: [
           TextFormField(
             initialValue: initialValue,
-            style: TextStyles.input,
             validator: validator,
+            style: TextStyles.input,
+            controller: controller,
+            onChanged: onChanged,
             decoration: InputDecoration(
               labelText: label,
               labelStyle: TextStyles.input,

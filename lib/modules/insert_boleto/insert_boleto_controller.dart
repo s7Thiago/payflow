@@ -32,6 +32,8 @@ class InsertBoletoController {
   void cadastrarBoleto() {
     final form = formKey.currentState;
 
-    if (form!.validate()) {}
+    if (form!.validate()) {
+      print(model);
+    }
   }
 }
