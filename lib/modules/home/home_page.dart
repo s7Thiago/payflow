@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payflow/modules/home/home_controller.dart';
+import 'package:payflow/modules/meus_boletos/meus_boletos_page.dart';
 import 'package:payflow/shared/auth/auth_controller.dart';
 import 'package:payflow/shared/models/boleto_model.dart';
 import 'package:payflow/shared/routes.dart';
@@ -20,10 +21,7 @@ class _HomePageState extends State<HomePage> {
   final authController = AuthController();
 
   final pages = [
-    Container(
-      // color: Colors.red,
-      child: const BoletoListWidget()
-    ),
+    const MeusBoletosPage(),
     Container(color: Colors.blue),
   ];
 
