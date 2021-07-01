@@ -77,9 +77,11 @@ class _HomePageState extends State<HomePage> {
                 controller.setPage(0);
                 setState(() {});
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.home,
-                color: AppColors.primary,
+                color: controller.currentPage == 0
+                    ? AppColors.primary
+                    : AppColors.body,
               ),
             ),
             Material(
@@ -107,9 +109,11 @@ class _HomePageState extends State<HomePage> {
                 controller.setPage(1);
                 setState(() {});
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.description_outlined,
-                color: AppColors.body,
+                color: controller.currentPage == 1
+                    ? AppColors.primary
+                    : AppColors.body,
               ),
             ),
           ],
