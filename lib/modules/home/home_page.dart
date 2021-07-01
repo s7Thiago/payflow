@@ -5,6 +5,7 @@ import 'package:payflow/shared/models/boleto_model.dart';
 import 'package:payflow/shared/routes.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
+import 'package:payflow/shared/widgets/boleto_list/boleto_list.dart';
 import 'package:payflow/shared/widgets/boleto_tile/boleto_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,13 +22,7 @@ class _HomePageState extends State<HomePage> {
   final pages = [
     Container(
       // color: Colors.red,
-      child: BoletoTileWidget(
-        data: BoletoModel(
-            name: 'Conta de internet',
-            dueDate: '01072021',
-            value: 129,
-            barcode: '000011112222333344445555'),
-      ),
+      child: const BoletoListWidget()
     ),
     Container(color: Colors.blue),
   ];
