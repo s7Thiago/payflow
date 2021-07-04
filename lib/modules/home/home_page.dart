@@ -23,11 +23,6 @@ class _HomePageState extends State<HomePage> {
   final controller = HomeController();
   final authController = AuthController();
 
-  final pages = [
-    const MeusBoletosPage(),
-    const ExtratosPage(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +70,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: pages[controller.currentPage],
+      body: [
+        MeusBoletosPage(key: UniqueKey()),
+        ExtratosPage(key: UniqueKey()),
+      ][controller.currentPage],
       bottomNavigationBar: SizedBox(
         height: 90,
         child: Row(
@@ -97,8 +95,9 @@ class _HomePageState extends State<HomePage> {
               color: AppColors.primary,
               borderRadius: BorderRadius.circular(5),
               child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.BARCODE_SCANNER);
+                onTap: () async {
+                  await Navigator.pushNamed(context, AppRoutes.BARCODE_SCANNER);
+                  setState(() {});
                 },
                 child: Container(
                   width: 56,
