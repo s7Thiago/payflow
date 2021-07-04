@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: pages[controller.currentPage],
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 90,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -98,8 +98,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(5),
               child: InkWell(
                 onTap: () {
-                  // Navigator.pushNamed(context, AppRoutes.BARCODE_SCANNER);
-                  Navigator.pushNamed(context, AppRoutes.BARCODE_INSERT_BOLETO);
+                  Navigator.pushNamed(context, AppRoutes.BARCODE_SCANNER);
                 },
                 child: Container(
                   width: 56,
