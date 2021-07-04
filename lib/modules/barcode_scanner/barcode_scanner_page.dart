@@ -25,6 +25,7 @@ class _BarCodeScannerPageState extends State<BarCodeScannerPage> {
         Navigator.pushReplacementNamed(
           context,
           AppRoutes.BARCODE_INSERT_BOLETO,
+          arguments: controller.status.barcode,
         );
       }
     });
