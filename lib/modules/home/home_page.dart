@@ -3,12 +3,17 @@ import 'package:payflow/modules/extratos/extratos_page.dart';
 import 'package:payflow/modules/home/home_controller.dart';
 import 'package:payflow/modules/meus_boletos/meus_boletos_page.dart';
 import 'package:payflow/shared/auth/auth_controller.dart';
+import 'package:payflow/shared/models/user_model.dart';
 import 'package:payflow/shared/routes.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomePage({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -39,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                   text: 'Olá, ',
                   children: [
                     TextSpan(
-                      text: 'Thiago',
+                      text: widget.user.name,
                       style: TextStyles.titleBoldBackground,
                     )
                   ],
@@ -57,8 +62,12 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     height: 48,
                     width: 48,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        image: DecorationImage(
+                            image: NetworkImage(
+                          widget.user.photoURL!,
+                        ))),
                   ),
                 ),
               ),

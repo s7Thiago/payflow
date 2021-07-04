@@ -14,7 +14,8 @@ class AuthController {
     if (user != null) {
       _user = user;
       saveUser(user);
-      Navigator.pushReplacementNamed(context, AppRoutes.HOME);
+      // Passing the user data to use on home page
+      Navigator.pushReplacementNamed(context, AppRoutes.HOME, arguments: user);
     } else {
       Navigator.pushReplacementNamed(context, AppRoutes.LOGIN);
     }
